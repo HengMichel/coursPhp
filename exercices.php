@@ -107,9 +107,131 @@ $nombre = 3;
 #si non afficher => le npombre est impaire
 if($nombre % 2 == 0 ){
     echo "$nombre le nombre est paire."."<br>";
-}else{
-    echo "$nombre le nombre est impaire."."<br> Jeremy Trop Beau mdr ";
 }
+
+// Ajout et suppression d'éléments
+// Créez un tableau vide.
+$number = [];
+// Ajoutez les nombres de 1 à 5 à ce tableau.
+array_push ($number,1,2,3,4,5);
+echo "<pre>";
+print_r ($number);
+echo "</pre>";
+// Supprimez le troisième élément.
+if (isset($number[2])) {
+    unset($number[2]);
+}
+// Affichez le contenu final du tableau.
+echo "<pre>";
+print_r($number);
+echo "</pre>";
+// Réorganiser les indices pour avoir un tableau continu
+// Afficher le tableau après suppression
+$number = array_values($number);
+
+
+// Recherche et modification
+// Créez un tableau contenant plusieurs noms de pays.
+$tab = ["France","Roumania","Iran"];
+echo "<pre>";
+print_r($tab);
+echo "</pre>";
+// Vérifiez si "France" est présent dans le tableau.
+// Si oui, remplacez "France" par "Espagne".
+
+if (in_array("France",$tab)) {
+    $country = array_search("France",$tab);
+    if ($country !== false) {
+        $tab[$country] = "Espagne";
+    }
+}
+
+// Affichez le tableau modifié.
+echo "<pre>";
+print_r ($tab);
+echo "</pre>";
+
+# Tirage du loto :
+// - on veut 5 n° au hasard
+// - on veut des n° différents
+// - numéros de 1 à 49
+// - comment savoir si le n° est déjà sorti ?
+// - exemple : 5-7-12-49-24
+$tab2 = [];
+
+// - utilisez la fonction rand pour générer un nombre aléatoire
+// - exemple : $nombreAleatoire = rand(1, 49);
+while (count($tab2) < 5){
+    $random = rand(1,49);
+    if(!in_array($random,$tab2)){
+        $tab2[] = $random;
+    }
+}
+// - Trier les n° pour l'affichage final
+sort($tab2);
+// - les numeros doivent etre séparé par des tirets (-) dans l'affichage final
+$tab2 = implode("-",$tab2);
+echo $tab2."<br>"."<br>";
+
+
+
+# Tirage EuroMillions
+/*
+ - Pour jouer à EuroMillions , il vous faut cocher 7 numéros : 
+ - 5 numéros sur une grille de 50 numéros 
+ - et 2 étoiles sur une grille de 12 numéros. 
+ - Vous remportez le jackpot si vous avez 5 numéros gagnants et les 2 étoiles.
+
+ - ecrire une fonction tirage qui prends deux parametres
+ - le premier parametres correspond au nombre de numeros a tiré
+ - le second correspond au nombre maximum que les numeros ne doivent pas dépasser
+*/
+
+function tirage($numtire,$max){
+    $tab3 = [];
+    while (count($tab3) <$numtire){
+        $random2 = rand(1,$max);
+
+        if(!in_array($numtire,$tab3)){
+            $tab3[] = $random2;
+     }
+}
+sort($tab3);
+return $tab3;
+}
+// je veux 5 numeros aleatoires entre 1 et 50
+$tab3 = tirage(5, 50);
+// je veux deu numeros aleatoire entre 1 et 12
+$etoile = tirage(2, 12);
+echo implode("-",$tab3)." etoiles ".implode("-",$etoile);
+
+
+
+
+    
+# Exercice :***************************** Formulaire d'Inscription  *******************************************
+
+// Dans cet exercice, vous allez créer un formulaire d'inscription en HTML et traiter les données soumises en utilisant PHP. Le formulaire d'inscription demandera aux utilisateurs de saisir leur nom, leur adresse e-mail, un mot de passe et de confirmer le mot de passe.
+
+
+// Créez un fichier HTML nommé formulaire_inscription.html contenant un formulaire d'inscription avec les champs suivants :
+// Nom complet (input de type texte)
+// Adresse e-mail (input de type email)
+// Mot de passe (input de type password)
+// Confirmer le mot de passe (input de type password)
+// Créez un fichier PHP nommé traitement_inscription.php pour traiter les données du formulaire d'inscription. Dans ce fichier :
+
+
+// Utilisez la méthode POST pour récupérer les données soumises du formulaire ($_POST).
+// Vérifiez si les champs nom, adresse e-mail, mot de passe et confirmation du mot de passe ne sont pas vides.
+// Vérifiez si le mot de passe et la confirmation du mot de passe correspondent.
+// Si tous les champs sont remplis et les mots de passe correspondent, affichez un message de confirmation.
+// Si au moins un champ est vide ou les mots de passe ne correspondent pas, affichez un message d'erreur et indiquez les champs manquants ou incohérents.
+// Dans le fichier HTML, assurez-vous que le formulaire envoie les données soumises à la page de traitement PHP (traitement_inscription.php) en utilisant la méthode POST.
+
+
+
+
     ?>
 </body>
 </html>

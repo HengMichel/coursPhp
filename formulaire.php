@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 <!DOCTYPE html>
 <html lang="en">
 <head>

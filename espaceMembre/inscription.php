@@ -3,38 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Inscription</title>
 </head>
 <body>
-    <form method="POST" action="traitement3.php" enctype="multipart/form-data">
-        <div>
-            <input type="submit" class="co" name="co" value="Connexion">
-            <br><br>
+    <?php include_once "nav.php"; ?>
+    <div class="container">
+        <form action="traitement.php" method="post" enctype="multipart/form-data">
             <div>
-                <label for="email">E-Mail :</label>
-                <br>
-                <input type="email" name="email">
-                <br>
+                <input type="text" name="email" placeholder="Votre email">
             </div>
             <div>
-                <label for="name">Pseudo</label>
-                <br>
-                <input type="text" name="pseudo">
-                <br>
+                <input type="text" name="pseudo" placeholder="Votre pseudo">
             </div>
-            <br>
             <div>
-                <input type="password" name="mdp" placeholder="Mot de Passe"><br>
+                <input type="password" name="mdp" placeholder="Votre mot de passe">
             </div>
-            <br>
             <div>
-                <input type="password" name="confirmdp" placeholder="Confirme Mot de Passe"><br>
+                <input type="password" name="confirm_mdp" placeholder="Comfirmer votre mdp">
             </div>
-            <br>
-            <input type="file" name="image">
-             <br><br>
-            <input type="submit" class="envoi" name="inscription" value="Inscription">
-        </div>
-    </form>
+            <div>
+                <input type="file" name="photo">
+            </div>
+            <div>
+                <button name="valider">Inscription</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

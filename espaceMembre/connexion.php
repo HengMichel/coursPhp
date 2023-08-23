@@ -8,15 +8,15 @@
 <body>
     <?php include_once "nav.php"; ?>
     <form action="traitement.php" method="post" enctype="multipart/form-data">
-            <div>
-                <input type="text" name="pseudo" placeholder="Votre pseudo">
-            </div>
-            <div>
-                <input type="password" name="mdp" placeholder="Votre mot de passe">
-            </div>
-            <div>
-                <button name="connexion">Se co</button>
-            </div>
-        </form>
+         <div>
+             <input type="text" name="pseudo" placeholder="Votre pseudo">
+         </div>
+         <div>
+             <input type="password" name="mdp" placeholder="Votre mot de passe">
+         </div>
+         <div>
+             <button name="connexion">Se co</button>
+         </div>
+    </form>
 </body>
 </html>

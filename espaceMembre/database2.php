@@ -5,7 +5,7 @@ function dbConnexion(){
     try{// recupère l'objet de connexion à la base de donnés dans la variable $connexionDb
         $connexionDb = new PDO("mysql:host=localhost;dbname=cours_db","root","");// si la connexion echoue       
     }catch(PDOExeption $e){// recupère notre erreur dans $connexionDb
-        $connexionDb = $e;
+        $connexionDb = $e->getMessage();
     }
     return $connexionDb;// returne l'objet de connexion ou une erreur
 }

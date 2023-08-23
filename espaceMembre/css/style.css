@@ -115,7 +115,7 @@
   form {
     width: 90%;
     margin: auto;
-    margin-top: 20px;
+    padding-top: 40px;
     background-color: rgb(226, 224, 224);
   }
   /*************** END GLOBAL ***************/
@@ -130,23 +130,32 @@
  } 
 /*************** END HEADER ***************/
 /*************** MAIN ***************/
-.co {
-    
+nav>button>a {    
     color:white;
     background-color: rgb(24,128,56);
-    font-size: 20px;
+    font-size: 30px;
     margin-top: 50px;
     border-radius: 10px;
-    width: 20%;
+    text-decoration: none;
 }
-.co2 {
+nav>button{
+    margin-top: 20px;
+    background-color:  rgb(24,128,56);
+    border: transparent;
+    border-radius: 10px;
+    width: 15%;
+    border: 2px solid mediumslateblue;
+}
+.inscription>button {
     
     color:white;
     background-color: rgb(180,95,6);
-    font-size: 20px;
-    margin-top: 50px;
+    font-size: 30px;
+    margin-top: 20px;
     border-radius: 10px;
-    width: 20%;
+    width: 15%;
+    margin-bottom: 30px;
+    border: 2px solid mediumslateblue;
 }
 
   .email{
@@ -164,17 +173,20 @@
     text-align: center;
     width: 50%;
   }
-  .confirmdp{
+  .confir_mdp{
     font-size: larger;
     text-align: center;
     width: 50%;
   }
   .image{
     font-size: larger;
+    font-weight: bolder;
     text-align: center;
-    width: 30%;
+    width: 33%;
     color:royalblue;
     margin-left: 20px;
+    background-color: pink;
+    
   }
   .envoi{
     font-size: larger;
@@ -188,7 +200,7 @@
     width: 80%;
     border-radius: 5px;
     margin-top: 10px; 
-    border: 1px solid rgb(233, 198, 1); 
+    border: 2px solid mediumslateblue; 
     margin-bottom: 40px;
     /* background-color: rgb(236, 233, 233);
     /* filter: blur(8px); */
@@ -199,6 +211,7 @@
     padding: 0.5em;
     border: solid rgb(233, 198, 1);
     border-radius: 3px;
+    background-color: rgb(233, 198, 1);
   }
   
   /*************** END MAIN ***************/

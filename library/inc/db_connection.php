@@ -14,4 +14,3 @@ function dbConnexion()
     }
     return $connexionDb;// returne l'objet de connexion ou une erreur
 }
-echo "BG";

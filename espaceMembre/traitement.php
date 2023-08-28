@@ -17,7 +17,7 @@ if(isset($_POST["valider"])){ //c'est pour l'inscription
 
     try {
         $request->execute(array($email,$pseudo,$mdpCrypt,$imgName));
-    } catch (PDOExeption $e) {
+    } catch (PDOException $e) {
         echo $e->getMessage();
     }
 
@@ -36,12 +36,14 @@ if(isset($_POST["connexion"])){
     $connexionRequest->execute(array($pseudo));
     // recupere le resultat de la requete
     $utilisateur = $connexionRequest->fetch(PDO::FETCH_ASSOC);//convertir le resultat de la requete en tableau pour le manipuler
-    echo"<pre>";
-    print_r($utilisateur);
-    echo"<pre>";
+    // echo"<pre>";
+    // print_r($utilisateur);
+    // echo"<pre>";
 
     if(empty($utilisateur)){ // si le tableau $utilisateur est vide
-        echo "Utilisateur inconnu...";
+        // echo "Utilisateur inconnu...";
+        $_SESSION["error"] = "Utilisateur inconnu...."; // ajouter le message d'erreur dans le tableau
+        header("Location: connexion.php"); // rediriger vers connexion.php
     }else{ //sinon on verifie le mot de passe
         if(password_verify($mdp,$utilisateur["mdp"])){
             // creation des variables de session
@@ -49,11 +51,34 @@ if(isset($_POST["connexion"])){
             $_SESSION["pseudo"] = $utilisateur["pseudo"];
             $_SESSION["img"] = $utilisateur["profil_img"];
 
+            // echo $_SESSION["img"];
+
             header("Location: accueil.php");
             
         }else{
-            echo "mot de passe incorrect";
-            header("refresh:2;http://localhost/coursPhp/espaceMembre/connexion.php");//retour a la page de depart
+            $_SESSION["error"] = "mot de passe incorrect";
+            header("Location: connexion.php");
         }
+    }
+}
+
+// pour la publication
+if(isset($_POST["publier"])){
+    $message = htmlspecialchars($_POST["message"]);
+
+    $image_name = $_FILES["img"]["name"];
+    $tmp = $_FILES["img"]["tmp_name"];
+    $destination = $_SERVER["DOCUMENT_ROOT"]."/coursPhp/espaceMembre/images2/".$image_name;
+     move_uploaded_file($tmp,$destination);
+
+     // connexion a la bd
+     $dbconnect = dbConnexion();
+    //  preparation de la requete
+    $request = $dbconnect->prepare("INSERT INTO posts (membre_id,photo,text) VALUES (?,?,?)");
+    
+    try {
+        $request->execute(array($_SESSION["id"],$image_name,$message));
+    } catch (PDOException $e) {
+        echo $e->getMessage();
     }
 }

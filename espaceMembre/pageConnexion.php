@@ -1,3 +1,5 @@
+<?php session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +9,12 @@
     <title>Page de connexion</title>
 </head>
 <body>
-    <?php include_once "nav.php"; ?>
-    <form method="POST" action="traitementConnexion.php" enctype="multipart/form-data">
+    <?php include_once "nav2.php"; ?>
+    <form method="POST" action="traitement2.php" enctype="multipart/form-data">
+    <?php if(isset($_SESSION["error"])){ ?>
+        <p><?= $_SESSION["error"]; ?></p>
+    <?php } unset($_SESSION["error"]); ?>
+
         <h1>Page de connexion</h1>
         <div>
             <div>

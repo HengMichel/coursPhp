@@ -13,10 +13,6 @@ if(isset($_POST["valider"])){
     // il faut se connecter à la base de données
     $db = dbConnexion(); //permet d'établir la connexion avec db
 
-    echo"<pre>";
-    print_r($_FILES);
-    echo"</pre>";
-    // name img
     $imgName = $_FILES["image"]["name"];
     // loc temporaire server
     $tmpName = $_FILES["image"]["tmp_name"];
@@ -30,14 +26,14 @@ if(isset($_POST["valider"])){
     // execution de la requete
     try {//essayer d'enregistrer les infos dans la table utilisateurs
         $request->execute(array($email,$pseudo,$mdpCrypt,$imgName));
-    } catch (PDOExeption $e) {
+    } catch (PDOException $e) {
         echo $e->getMessage(); // afficher l'erreur sql genere
     }
 }
 
-// ********************** pour la connexion *********************
+// ********************** for connexion *********************
 
-if(isset($_POST["connexion"])){
+if(isset($_POST["co"])){
     $pseudo = $_POST["pseudo"];
     $mdp = $_POST["mdp"];
     // etablir la connexion avec la db
@@ -48,12 +44,14 @@ if(isset($_POST["connexion"])){
     $connexionRequest->execute(array($pseudo));
     // recupere le resultat de la requete
     $utilisateur = $connexionRequest->fetch(PDO::FETCH_ASSOC);//convertir le resultat de la requete en tableau pour le manipuler
-    echo"<pre>";
-    print_r($utilisateur);
-    echo"<pre>";
+    // echo"<pre>";
+    // print_r($utilisateur);
+    // echo"<pre>";
 
     if(empty($utilisateur)){ // si le tableau $utilisateur est vide
-        echo "Utilisateur inconnu...";
+        // echo "Utilisateur inconnu...";
+        $_SESSION["error"] = "Utilisateur inconnu..."; // ajouter le message d'erreur dans le tableau
+        header("Location: pageConnexion.php"); // rediriger vers pageConnexion.php
     }else{ //sinon on verifie le mot de passe
         if(password_verify($mdp,$utilisateur["mdp"])){
             // creation des variables de session
@@ -61,11 +59,10 @@ if(isset($_POST["connexion"])){
             $_SESSION["pseudo"] = $utilisateur["pseudo"];
             $_SESSION["img"] = $utilisateur["profil_img"];
 
-            header("Location: accueil.php");
+            header("Location: accueil2.php");
             
         }else{
-            echo "mot de passe incorrect";
-            header("refresh:2;http://localhost/coursPhp/espaceMembre/pageConnexion.php");//retour a la page de depart
-        }
+            $_SESSION["error"] = "mot de passe incorrect";
+            header("Location: pageConnexion.php");        }
     }
 }

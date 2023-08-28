@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION["id"])){ ?>
     <nav>
-        <a href="post.php">Publier</a>
+        <a href="post2.php">Publier</a>
         <div class="profil">
             <img src="images2/<?= $_SESSION["img"]; ?>" alt="profil">
         </div>
@@ -12,13 +12,14 @@ if(isset($_SESSION["id"])){ ?>
     </nav>
 <?php } else { ?>
     <nav>
-        <button><a href="connexion.php">connexion</a></button>
+        <button><a href="pageConnexion.php">connexion</a></button>
     </nav>
 <?php } ?>    
 
 <?php
 if(isset($_POST["deco"])){
     session_destroy();
-    echo "<script>location.href='connexion.php'</script>";
+    echo"<script>location.href='pageConnexion.php'</script>";
+
 }
 ?>

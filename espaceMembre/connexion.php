@@ -1,3 +1,5 @@
+<?php session_start(); 
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,15 +10,19 @@
 <body>
     <?php include_once "nav.php"; ?>
     <form action="traitement.php" method="post" enctype="multipart/form-data">
-         <div>
+        <?php if(isset($_SESSION["error"])){?>
+            <p><?= $_SESSION["error"]; ?></p>
+        <?php } unset($_SESSION["error"]); ?>
+
+        <div>
              <input type="text" name="pseudo" placeholder="Votre pseudo">
-         </div>
-         <div>
-             <input type="password" name="mdp" placeholder="Votre mot de passe">
-         </div>
-         <div>
-             <button name="connexion">Se co</button>
-         </div>
+        </div>
+        <div>
+            <input type="password" name="mdp" placeholder="Votre mot de passe">
+        </div>
+        <div>
+            <button name="connexion">Se co</button>
+        </div>
     </form>
 </body>
 </html>

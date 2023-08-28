@@ -7,11 +7,10 @@
     <title>Page d'inscription</title>
 </head>
 <body>
-    <?php include_once "nav.php"; ?>
+    <?php include_once "nav2.php"; ?>
     <div>
         <h1>Page d'inscription</h1>
-        <form method="POST" action="traitementInscription.php" enctype="multipart/form-data">
-            <!-- <input type="submit" class="co" name="co" value="Connexion"> -->
+        <form method="POST" action="traitement2.php" enctype="multipart/form-data">
             <div>
                 <input type="email" name="email" placeholder="Your email :" class="email">
                 <br>
@@ -29,9 +28,7 @@
                 <input type="file" name="image" class="image">
             </div>
             <div class="inscription">
-                <button
-                name="valider">Inscription
-                </button>
+                <button name="valider">Inscription</button>
             </div>
         </form>
     </div>

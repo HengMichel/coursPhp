@@ -215,7 +215,7 @@ nav>button{
   }
   nav{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     border: solid 1px;
   }
   .profil{
@@ -233,7 +233,32 @@ nav>button{
     border: transparent;
     
   }
-  
+  .post{
+    width: 200px;
+    height: 200px;
+    margin: 50px;
+  }
+  .postimg{
+    width: 200px;
+    height: 200px;
+  }
+  .postimg img{
+    width: 100%;
+    height: 100%;
+    
+  }
+  .fa-heart:before {
+    color: red;
+    margin-left: 10px;
+    content: "\f004";
+}
+.heart{
+  background-color: transparent;
+  border: transparent;
+  text-decoration-line: none;
+  font-weight: bolder;
+  color: black;
+}
   /*************** END MAIN ***************/
   
   

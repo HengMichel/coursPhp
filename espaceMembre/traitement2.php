@@ -17,12 +17,16 @@ if(isset($_POST["valider"])){
     // loc temporaire server
     $tmpName = $_FILES["image"]["tmp_name"];
     $destination = $_SERVER["DOCUMENT_ROOT"]."/coursPhp/espaceMembre/images2/".$imgName;
-    echo $destination;
+
+    // echo $destination;
+
     move_uploaded_file($tmpName,$destination);
 
+    // $conn = dbConnexion(); test sans voir si il y a une error
 
     // preparation de la requete
     $request = $db->prepare("INSERT INTO membres (email,pseudo,mdp,profil_img) VALUES (?,?,?,?)");
+
     // execution de la requete
     try {//essayer d'enregistrer les infos dans la table utilisateurs
         $request->execute(array($email,$pseudo,$mdpCrypt,$imgName));
@@ -59,10 +63,54 @@ if(isset($_POST["co"])){
             $_SESSION["pseudo"] = $utilisateur["pseudo"];
             $_SESSION["img"] = $utilisateur["profil_img"];
 
+            setcookie("id_user", $utilisateur["id_membre"],time()+3600,'/', 'localhost',false,true );
+
+
             header("Location: accueil2.php");
             
         }else{
             $_SESSION["error"] = "mot de passe incorrect";
             header("Location: pageConnexion.php");        }
     }
+}
+
+// pour la publication
+if(isset($_POST["publier"])){
+    $message = htmlspecialchars($_POST["message"]);
+
+    $image_name = $_FILES["img"]["name"];
+    $tmp = $_FILES["img"]["tmp_name"];
+    $destination = $_SERVER["DOCUMENT_ROOT"]."/coursPhp/espaceMembre/images2/".$image_name;
+
+     move_uploaded_file($tmp,$destination);
+
+     // connexion a la bd
+     $dbconnect = dbConnexion();
+    //  preparation de la requete
+    $request = $dbconnect->prepare("INSERT INTO posts (membre_id,image,text) VALUES (?,?,?)");
+    // execution de la requete
+    try {
+        $request->execute(array($_SESSION["id"],$image_name,$message));
+        header("Location: accueil2.php");
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
+if(isset($_GET["idpost"])){
+    // connexion a la bd
+    $dbconnect = dbConnexion();
+    // prepare la requete
+    $request = $dbconnect->prepare("SELECT likes FROM posts WHERE id_post = ?");
+    // executer la requete
+    $request->execute(array($_GET["idpost"]));
+    // on recupere le resultat
+    $likes = $request->fetch();
+
+    echo $likes["likes"];
+    // requete pour modifier le nombre de like
+    $request1 = $dbconnect->prepare("UPDATE posts SET likes = ? WHERE id_post = ?");
+    // executer la requete
+    $request1->execute(array($likes["likes"]+1, $_GET["idpost"]));
+    header("Location: accueil2.php");
 }

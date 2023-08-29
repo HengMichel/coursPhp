@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION["id"])){ ?>
     <nav>
-        <a href="post.php">Publier</a>
+        <a href="post.php" class="publier">Publier</a>
         <div class="profil">
             <img src="images2/<?= $_SESSION["img"]; ?>" alt="profil">
         </div>

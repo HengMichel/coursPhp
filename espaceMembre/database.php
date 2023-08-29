@@ -1,4 +1,5 @@
 <?php
+
 function dbConnexion(){
     $connexion = null;
     try {

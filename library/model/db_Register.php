@@ -39,7 +39,7 @@ if(isset($_POST["submit"])){
         //essayer d'enregistrer les infos dans la table utilisateurs
 
         $request->execute(array($civility,$firstname,$lastname,$email,$mdpCrypt,$country,$phone,$birthday,$message,$conditions));
-    } catch (PDOExeption $e) {
+    } catch (PDOException $e) {
 
         // afficher l'erreur sql genere
         echo $e->getMessage();

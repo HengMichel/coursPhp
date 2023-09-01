@@ -1,3 +1,6 @@
+<!-- ***************  DATABASE***************** -->
+
+
 <?php
 function dbConnexion()
 {
@@ -9,7 +12,7 @@ function dbConnexion()
 
     try{// recupère l'objet de connexion à la base de donnés dans la variable $connexionDb
         $connexionDb = new PDO("mysql:host=$host;dbname=$dbName",$identify,$passeword);// si la connexion echoue       
-    }catch(PDOExeption $e) {// recupère notre erreur dans $connexionDb
+    }catch(PDOException $e) {// recupère notre erreur dans $connexionDb
         $connexionDb = $e->getMessage();
     }
     return $connexionDb;// returne l'objet de connexion ou une erreur

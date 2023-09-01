@@ -4,7 +4,7 @@ require_once("./inc/header.php");
 ?>
 <div class="container">
     <h1>Book</h1>
-    <form action="./model/db_Register.php" method="post">
+    <form action="./model/db_register.php" method="post">
 
         <div class="form-group">
              <label for="author">author :</label>

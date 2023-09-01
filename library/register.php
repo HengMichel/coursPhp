@@ -1,10 +1,12 @@
 <?php
+session_start();
+
 require_once("./inc/function.php");
 require_once("./inc/header.php");
 ?>
 <div class="container">
     <h1>Page d'inscription</h1>
-    <form action="./model/db_Register.php" method="post">
+    <form action="./model/db_register.php" method="post">
 
         <div class="form-group">
             <label>civility :</label>
@@ -34,7 +36,7 @@ require_once("./inc/header.php");
             </div>
 
             <div class="form-group">
-                <input type="passwords" name="passwords" placeholder="Your password :" class="passwords">
+                <input type="password" name="passwords" placeholder="Your password :" class="passwords">
             </div>
 
             <div class="form-check">
